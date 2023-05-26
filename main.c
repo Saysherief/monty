@@ -1,6 +1,6 @@
 #include "monty.h"
 instruction_t opcodes[] = {{"push", push}, {"pall", pall},
-	{"pint", pint}, {NULL, NULL}
+	{"pint", pint}, {"pop", pop}, {NULL, NULL}
 };
 
 /**
@@ -52,7 +52,8 @@ int main(int argc, char **argv)
 			exit(EXIT_FAILURE);
 		}
 	}
+	free_s(&stack);
 	free(line_buffer);
 	fclose(mfile);
-	return (0);
+	return (EXIT_SUCCESS);
 }

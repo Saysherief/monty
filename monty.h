@@ -39,5 +39,7 @@ extern instruction_t opcodes[];
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+void free_s(stack_t **stack);
 
 #endif /* MONTY_H */
