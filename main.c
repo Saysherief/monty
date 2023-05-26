@@ -1,6 +1,6 @@
 #include "monty.h"
 instruction_t opcodes[] = {{"push", push}, {"pall", pall},
-	{NULL, NULL}
+	{"pint", pint}, {NULL, NULL}
 };
 
 /**
