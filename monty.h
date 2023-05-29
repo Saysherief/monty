@@ -44,6 +44,7 @@ void nop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
 void free_s(stack_t **stack);
 void add(stack_t **stack, unsigned int line_number);
+void sub(stack_t **stack, unsigned int line_number);
 int _atoi(char *s);
 
 #endif /* MONTY_H */
