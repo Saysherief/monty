@@ -42,7 +42,7 @@ int main(int argc, char **argv)
 		opcode = strtok(line_buffer, " \n");
 		is_instruction = 0;
 
-		if (opcode == NULL)
+		if (opcode == NULL || opcode[0] == '#')
 			continue;
 
 		for (i = 0; opcodes[i].opcode != NULL; i++)

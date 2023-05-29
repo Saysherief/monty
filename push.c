@@ -12,7 +12,7 @@ void push(stack_t **stack, unsigned int line_number)
 	stack_t *new = NULL;
 	char *arg = strtok(NULL, " \n");
 
-	if (arg == NULL)
+	if (arg == NULL || !is_int(arg))
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
@@ -32,35 +32,21 @@ void push(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * _atoi - converts a string
+ * is_int - checks if the string is an integer
  * @s: a pointer to the string /the first char on the string
- * Return: integer type of the string
+ * Return: 1 if integer and 0 if not
  */
-int _atoi(char *s)
+int is_int(char *s)
 {
-	unsigned int count = 0, size = 0, oi = 0, sign = 1, m = 1, i;
+	int i = 0;
 
-	while (*(s + count) != '\0')
+	if (s[0] == '-' || s[0] == '+')
+		i++;
+	while (s[i] != '\0')
 	{
-		if (size > 0 && (*(s + count) < '0' || *(s + count) > '9'))
-			break;
-
-		if (*(s + count) == '-')
-			sign *= -1;
-
-		if ((*(s + count) >= '0') && (*(s + count) <= '9'))
-		{
-			if (size > 0)
-				m *= 10;
-			size++;
-		}
-		count++;
+		if (!isdigit(s[i]))
+			return (0);/*not int*/
+		i++;
 	}
-
-	for (i = count - size; i < count; i++)
-	{
-		oi = oi + ((*(s + i) - 48) * m);
-		m /= 10;
-	}
-	return (sign * oi);
+	return (1);
 }
