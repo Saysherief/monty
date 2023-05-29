@@ -23,10 +23,44 @@ void push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	new->n = atoi(arg);
+	new->n = _atoi(arg);
 	new->next = *stack;
 	new->prev = NULL;
 	if (*stack != NULL)
 		(*stack)->prev = new;
 	*stack = new;
+}
+
+/**
+ * _atoi - converts a string
+ * @s: a pointer to the string /the first char on the string
+ * Return: integer type of the string
+ */
+int _atoi(char *s)
+{
+	unsigned int count = 0, size = 0, oi = 0, sign = 1, m = 1, i;
+
+	while (*(s + count) != '\0')
+	{
+		if (size > 0 && (*(s + count) < '0' || *(s + count) > '9'))
+			break;
+
+		if (*(s + count) == '-')
+			sign *= -1;
+
+		if ((*(s + count) >= '0') && (*(s + count) <= '9'))
+		{
+			if (size > 0)
+				m *= 10;
+			size++;
+		}
+		count++;
+	}
+
+	for (i = count - size; i < count; i++)
+	{
+		oi = oi + ((*(s + i) - 48) * m);
+		m /= 10;
+	}
+	return (sign * oi);
 }
