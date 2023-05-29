@@ -12,7 +12,7 @@ void push(stack_t **stack, unsigned int line_number)
 	stack_t *new = NULL;
 	char *arg = strtok(NULL, " \n");
 
-	if (arg == NULL || atoi(arg) == 0)
+	if (arg == NULL)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
@@ -23,7 +23,7 @@ void push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	new->n = _atoi(arg);
+	new->n = atoi(arg);
 	new->next = *stack;
 	new->prev = NULL;
 	if (*stack != NULL)
