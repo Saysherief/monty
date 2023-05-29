@@ -14,8 +14,8 @@ int main(int argc, char **argv)
 	FILE *mfile;
 	unsigned int i, is_instruction, line_no = 0;
 	stack_t *stack = NULL;
-	char *opcode, *line_buffer = NULL;
-	size_t line_b_size = 0;
+	size_t line_b_size = 1024;
+	char *opcode, *line_buffer;
 
 	if (argc != 2)
 	{
@@ -28,10 +28,16 @@ int main(int argc, char **argv)
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
+	line_buffer = malloc(line_b_size * sizeof(char));
+	if (line_buffer == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 	while (fgets(line_buffer, line_b_size, mfile) != NULL)
 	{
 		line_no++;
-		opcode = strtok(line_buffer, "\n");
+		opcode = strtok(line_buffer, " \n");
 		is_instruction = 0;
 
 		if (opcode == NULL)
